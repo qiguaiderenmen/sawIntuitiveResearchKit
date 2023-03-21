@@ -405,11 +405,19 @@ void mtsIntuitiveResearchKitArm::Init(void)
                                          this, "use_gravity_compensation");
         m_arm_interface->AddCommandWrite(&mtsIntuitiveResearchKitArm::servo_ci,
                                          this, "servo_ci");
+
+        // Actuator conversion
+        m_arm_interface->AddCommandQualifiedRead(&mtsIntuitiveResearchKitArm::actuator_to_joint_position, this,
+                                                 "actuator_to_joint_position", vctDoubleVec(), vctDoubleVec());
+
         // Kinematic queries
         m_arm_interface->AddCommandQualifiedRead(&mtsIntuitiveResearchKitArm::query_cp,
                                                  this, "query_cp");
         m_arm_interface->AddCommandQualifiedRead(&mtsIntuitiveResearchKitArm::local_query_cp,
                                                  this, "local/query_cp");
+        m_arm_interface->AddCommandQualifiedRead(&mtsIntuitiveResearchKitArm::inverse_kinematics,
+                                                 this, "inverse_kinematics");
+
         // Trajectory
         m_arm_interface->AddCommandWrite(&mtsIntuitiveResearchKitArm::trajectory_j_set_ratio_v,
                                          this, "trajectory_j/set_ratio_v");
@@ -537,6 +545,16 @@ void mtsIntuitiveResearchKitArm::update_pid_configuration_js(void)
         m_pid_configuration_js.EffortMax() = m_coupling.JointToActuatorEffort() * m_pid_configuration_js.EffortMax();
     }
     mStateTableConfiguration.Advance();
+}
+
+void mtsIntuitiveResearchKitArm::actuator_to_joint_position(const vctDoubleVec & actuator,
+                                                            vctDoubleVec & joint) const
+{
+    if (m_has_coupling) {
+        joint = m_coupling.ActuatorToJointPosition() * actuator;
+    } else {
+        joint.ForceAssign(actuator);
+    }
 }
 
 void mtsIntuitiveResearchKitArm::ResizeKinematicsData(void)
@@ -2091,6 +2109,15 @@ void mtsIntuitiveResearchKitArm::BiasEncoderEventHandler(const int & nbSamples)
     }
 }
 
+
+void mtsIntuitiveResearchKitArm::inverse_kinematics(const prmInverseKinematicsQuery & input,
+                                                    vctDoubleVec & output) const
+{
+    output.ForceAssign(input.measured_jp());
+    this->InverseKinematics(output, input.goal_cp());
+}
+
+                                                   
 void mtsIntuitiveResearchKitArm::query_cp(const vctDoubleVec & jointValues,
                                           vctFrm4x4 & pose) const
 {
