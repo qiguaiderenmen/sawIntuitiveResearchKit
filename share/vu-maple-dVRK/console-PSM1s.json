@@ -1,0 +1,29 @@
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+    "io": {
+        // "port": "udp"
+        // "port": "fw"
+        // , "firewire-protocol": "broadcast-read-write"
+        "firewire-protocol": "sequential-read-write"
+    }
+    ,
+    "arms":
+    [
+        {
+            "name": "PSM1",
+            "type": "PSM_Si",
+            "serial": "697446" //,
+            // ,
+            // "socket-server": true,
+            // "remote-ip": "127.0.0.1",
+            // "port": 10001
+            /*"base-frame": {
+                "reference-frame": "PSM_Si",
+                "transform": [[  1.0,  0.0,          0.0,          0.00],
+                              [  0.0, 0.70710678,  0.70710678,  0.0 ],
+                              [  0.0, -0.70710678,   0.70710678,  0.0 ],
+                              [  0.0,  0.0,          0.0,          1.0 ]]
+            }*/
+        }
+    ]
+}

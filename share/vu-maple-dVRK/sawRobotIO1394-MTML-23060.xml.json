@@ -1,0 +1,396 @@
+{
+   "DallasChips" : null,
+   "DigitalInputs" : null,
+   "DigitalOutputs" : null,
+   "Robots" : [
+      {
+         "Actuators" : [
+            {
+               "AxisID" : 0,
+               "BoardID" : 0,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : 6.2186440000000003,
+                     "Scale" : -0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.67000000000000004,
+                  "CurrentToBits" : {
+                     "Offset" : 32691,
+                     "Scale" : -5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 0.36005399999999999,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : -0.0014193299999999999,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : -166.40120999999999,
+                     "Scale" : 76.558976999999999,
+                     "Unit" : "deg"
+                  }
+               }
+            },
+            {
+               "AxisID" : 1,
+               "BoardID" : 0,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : -6.2676439999999998,
+                     "Scale" : 0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.67000000000000004,
+                  "CurrentToBits" : {
+                     "Offset" : 32926,
+                     "Scale" : 5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 0.45772000000000002,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : 0.00180433,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : -144.03454199999999,
+                     "Scale" : 76.089609999999993,
+                     "Unit" : "deg"
+                  }
+               }
+            },
+            {
+               "AxisID" : 2,
+               "BoardID" : 0,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : -6.252561,
+                     "Scale" : 0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.67000000000000004,
+                  "CurrentToBits" : {
+                     "Offset" : 32815,
+                     "Scale" : 5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 0.38223800000000002,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : 0.0015067800000000001,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : -144.37121200000001,
+                     "Scale" : 75.411635000000004,
+                     "Unit" : "deg"
+                  }
+               }
+            },
+            {
+               "AxisID" : 3,
+               "BoardID" : 0,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : -6.2328970000000004,
+                     "Scale" : 0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.67000000000000004,
+                  "CurrentToBits" : {
+                     "Offset" : 32704,
+                     "Scale" : 5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 2.1681910000000002,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : 0.0085470100000000007,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : 113.740545,
+                     "Scale" : -76.298218000000006,
+                     "Unit" : "deg"
+                  }
+               }
+            },
+            {
+               "AxisID" : 0,
+               "BoardID" : 1,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : 6.2722709999999999,
+                     "Scale" : -0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.58999999999999997,
+                  "CurrentToBits" : {
+                     "Offset" : 32853,
+                     "Scale" : -5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 6.0922859999999996,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : -0.16963209000000001,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : 220.904909,
+                     "Scale" : -77.549863000000002,
+                     "Unit" : "deg"
+                  }
+               }
+            },
+            {
+               "AxisID" : 1,
+               "BoardID" : 1,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : -6.277882,
+                     "Scale" : 0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.58999999999999997,
+                  "CurrentToBits" : {
+                     "Offset" : 32834,
+                     "Scale" : 5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 6.0922859999999996,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : 0.16963209000000001,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : -169.69141999999999,
+                     "Scale" : 75.098724000000004,
+                     "Unit" : "deg"
+                  }
+               }
+            },
+            {
+               "AxisID" : 2,
+               "BoardID" : 1,
+               "Drive" : {
+                  "BitsToCurrent" : {
+                     "Offset" : 6.2639019999999999,
+                     "Scale" : -0.000190738,
+                     "Unit" : ""
+                  },
+                  "CurrentCommandLimit" : 0.40699999999999997,
+                  "CurrentToBits" : {
+                     "Offset" : 32842,
+                     "Scale" : -5242.8800000000001,
+                     "Unit" : ""
+                  },
+                  "EffortCommandLimit" : 0,
+                  "EffortToCurrent" : {
+                     "Offset" : 0,
+                     "Scale" : 17.791632,
+                     "Unit" : ""
+                  }
+               },
+               "Encoder" : {
+                  "BitsToPosition" : {
+                     "Offset" : 0,
+                     "Scale" : -0.33926416999999998,
+                     "Unit" : "deg"
+                  }
+               },
+               "JointType" : 2,
+               "Pot" : {
+                  "BitsToVoltage" : {
+                     "Offset" : 0,
+                     "Scale" : 6.8664600000000007e-05,
+                     "Unit" : ""
+                  },
+                  "VoltageToPosition" : {
+                     "Offset" : 72.808841000000001,
+                     "Scale" : 40.209108999999998,
+                     "Unit" : "deg"
+                  }
+               }
+            }
+         ],
+         "Coupling" : {
+            "ActuatorToJointEffort" : [
+               [ 1, 0, 0, 0, 0, 0, 0 ],
+               [ 0, 1, 1, 0, 0, 0, 0 ],
+               [ -0, -0, 1, 0.66969999999999996, 0, 0, 0 ],
+               [ -0, -0, -0, 1, 0, 0, 0 ],
+               [ -0, -0, -0, -0, 1, 0, 0 ],
+               [ -0, -0, -0, -0, -0, 1, 0 ],
+               [ -0, -0, -0, -0, -0, -0, 1 ]
+            ],
+            "ActuatorToJointPosition" : [
+               [ 1, 0, 0, 0, 0, 0, 0 ],
+               [ 0, 1, 0, 0, 0, 0, 0 ],
+               [ 0, -1, 1, 0, 0, 0, 0 ],
+               [ 0, 0.66969999999999996, -0.66969999999999996, 1, 0, 0, 0 ],
+               [ 0, 0, 0, 0, 1, 0, 0 ],
+               [ 0, 0, 0, 0, 0, 1, 0 ],
+               [ 0, 0, 0, 0, 0, 0, 1 ]
+            ],
+            "JointToActuatorEffort" : [
+               [ 1, 0, 0, 0, 0, 0, 0 ],
+               [ -0, 1, -1, 0.66969999999999996, 0, 0, 0 ],
+               [ 0, 0, 1, -0.66969999999999996, 0, 0, 0 ],
+               [ 0, 0, 0, 1, 0, 0, 0 ],
+               [ 0, 0, 0, 0, 1, 0, 0 ],
+               [ 0, 0, 0, 0, 0, 1, 0 ],
+               [ 0, 0, 0, 0, 0, 0, 1 ]
+            ],
+            "JointToActuatorPosition" : [
+               [ 1, 0, -0, -0, -0, -0, -0 ],
+               [ 0, 1, -0, -0, -0, -0, -0 ],
+               [ 0, 1, 1, -0, -0, -0, -0 ],
+               [ 0, 0, 0.66969999999999996, 1, -0, -0, -0 ],
+               [ 0, 0, 0, 0, 1, -0, -0 ],
+               [ 0, 0, 0, 0, 0, 1, -0 ],
+               [ 0, 0, 0, 0, 0, 0, 1 ]
+            ]
+         },
+         "HasActuatorToJointCoupling" : true,
+         "Name" : "MTML",
+         "NumberOfActuators" : 7,
+         "NumberOfBrakes" : 0,
+         "NumberOfJoints" : 7,
+         "OnlyIO" : false,
+         "PotLocation" : 2,
+         "PotTolerances" : [
+            {
+               "AxisID" : 0,
+               "Distance" : 0.087266462599716474,
+               "Latency" : 0.01
+            },
+            {
+               "AxisID" : 1,
+               "Distance" : 0.087266462599716474,
+               "Latency" : 0.01
+            },
+            {
+               "AxisID" : 2,
+               "Distance" : 0.087266462599716474,
+               "Latency" : 0.01
+            },
+            {
+               "AxisID" : 3,
+               "Distance" : 0.087266462599716474,
+               "Latency" : 0.01
+            },
+            {
+               "AxisID" : 4,
+               "Distance" : 0.087266462599716474,
+               "Latency" : 0.01
+            },
+            {
+               "AxisID" : 5,
+               "Distance" : 0.087266462599716474,
+               "Latency" : 0.01
+            },
+            {
+               "AxisID" : 6,
+               "Distance" : 0,
+               "Latency" : 0
+            }
+         ],
+         "SerialNumber" : 23060
+      }
+   ]
+}
+
