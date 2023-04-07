@@ -176,6 +176,9 @@ class Robot(Serializable):
     def pitch(self, index: int) -> float:
         raise NotImplementedError()
 
+    def velocitySource(self, index: int) -> str:
+        raise NotImplementedError()
+
     def motorMaxCurrent(self, index: int) -> float:
         raise NotImplementedError()
 
@@ -207,9 +210,10 @@ class Robot(Serializable):
             units = self.potentiometerUnits(index)
             direction = self.encoderDirection(index)
             encoderCPT = self.encoderCPT(index)
-            pitch = self.pitch(index)
             gearRatio = self.gearRatio(index)
-            yield Encoder(units, direction, encoderCPT, pitch, gearRatio)
+            pitch = self.pitch(index)
+            velocitySource = self.velocitySource(index)
+            yield Encoder(units, direction, encoderCPT, gearRatio, pitch, velocitySource)
 
     def generateAnalogIns(self):
         for index in range(self.numberOfActuators):
@@ -266,6 +270,7 @@ class ClassicPSM(Robot):
         self.encoderCPT = lambda index: [14400, 14400, 14400, 4000, 4000, 4000, 4000][index]
         self.gearRatio = lambda index: [56.50, 56.50, 336.6, 11.71, 11.71, 11.71, 11.71][index]
         self.pitch = lambda index: [1, 1, 17.4533, 1, 1, 1, 1][index]
+        self.velocitySource = lambda index: 'FIRMWARE'
         self.motorMaxCurrent = lambda index: [1.34, 1.34, 0.67, 0.67, 0.67, 0.67, 0.670][index]
         self.motorTorque = lambda index: [0.0438, 0.0438, 0.0438, 0.0438, 0.0438, 0.0438, 0.0438][index]
         self.actuatorType = lambda index: "Revolute" if index != 2 else "Prismatic"
@@ -312,6 +317,7 @@ class SiPSM(Robot):
         self.encoderCPT = lambda index: [81920, 81920, 50000, 4000, 4000, 4000, 4000][index]
         self.gearRatio = lambda index: [83.3333, 85.000, 965.91, 13.813, 13.813, 13.813, 13.813][index]
         self.pitch = lambda index: [1, 1, 17.4533, 1, 1, 1, 1][index]
+        self.velocitySource = lambda index: 'SOFTWARE' if index < 3 else 'FIRMWARE'
         self.motorMaxCurrent = lambda index: [3.4, 3.4, 1.1, 1.1, 1.1, 1.1, 1.1][index]
         self.motorTorque = lambda index: [0.0603, 0.0603, 0.0385, 0.0385, 0.0385, 0.0385, 0.0385][index]
         self.actuatorType = lambda index: "Revolute" if index != 2 else "Prismatic"
@@ -418,6 +424,7 @@ class ClassicECM(Robot):
         self.encoderCPT = lambda index: [4000, 4000, 640, 64][index]
         self.gearRatio = lambda index: [240, 240, 2748.55, 300.15][index]
         self.pitch = lambda index: [1, 1, 17.4533, 1][index]
+        self.velocitySource = lambda index: 'FIRMWARE'
         self.motorMaxCurrent = lambda index: [0.943, 0.943, 0.67, 0.59][index]
         self.motorTorque = lambda index: [0.1190, 0.1190, 0.0438, 0.00495][index]
         self.actuatorType = lambda index: "Revolute" if index != 2 else "Prismatic"
@@ -481,26 +488,27 @@ class ClassicECM(Robot):
 
 class SiECM(Robot):
     def __init__(self, calData, robotTypeName, controllerTypeName, serialNumber):
-        self.driveDirection = lambda index: [-1, 1, 1, 1][index]
-        self.encoderDirection = lambda index: -self.driveDirection(index)
+        self.driveDirection = lambda index: [-1, 1, 1, -1][index]
+        self.encoderDirection = lambda index: [1, -1, -1, -1][index]
         self.encoderCPT = lambda index: [81920, 81920, 640, 64][index]
         self.gearRatio = lambda index: [83.3333, 168.3333, 2748.6, 300.2][index]
         self.pitch = lambda index: [1, 1, -17.4533, 1][index]
+        self.velocitySource = lambda index: 'SOFTWARE'
         self.motorMaxCurrent = lambda index: [3.4, 3.4, 0.670, 0.590][index]
         self.motorTorque = lambda index: [0.0603, 0.0603, 0.0385, 0.0385][index]
         self.actuatorType = lambda index: "Revolute" if index != 2 else "Prismatic"
         self.potentiometerUnits = lambda index: "deg" if index != 2 else "mm"
         self.potentiometerLatency = lambda index: 0.01
-        self.potentiometerDistance = lambda index: 1.0
+        self.potentiometerDistance = lambda index: [1.0, 1.0, 2.0, 3.0][index]
 
         # # 2^13/10^3 or 2^11/10^3
         i_high = 65536 / 4800 / 2
         self.driveLinearAmpCurrent = lambda index: [i_high, i_high, 2.048, 2.048][index]
 
-        self.brakeMaxCurrent = lambda index: [0.1, 0.1, 0.7][index]
-        self.brakeReleaseCurrent = lambda index: [0.1, 0.1, 0.7][index]
+        self.brakeMaxCurrent = lambda index: [0.2, 0.2, 1.0][index]
+        self.brakeReleaseCurrent = lambda index: [0.15, 0.15, 1.0][index]
         self.brakeReleaseTime = lambda index: 0.5
-        self.brakeReleasedCurrent = lambda index: [0.05, 0.05, 0.15][index]
+        self.brakeReleasedCurrent = lambda index: [0.08, 0.08, 0.25][index]
         self.brakeEngagedCurrent = lambda index: 0.0
         self.brakeLinearAmpCurrent = lambda index: 2.048 # 2^11/10^3
 
@@ -559,13 +567,21 @@ class SiECM(Robot):
 
     def generateDigitalInputs(self):
         digitalInputBitIDs = [
-            (self.boardIDs[0], 4, "SUJClutch", 0.2),
-            (self.boardIDs[0], 13, "ManipClutch", 0.2),
-            (self.boardIDs[0], 16, "SUJClutch2", 0.2)
+            (self.boardIDs[0], 4, "SUJClutch", 0.01),
+            (self.boardIDs[0], 13, "ManipClutch", 0.01),
+            (self.boardIDs[0], 16, "SUJClutch2", 0.01)
         ]
 
         for boardID, bitID, inputType, debounceTime in digitalInputBitIDs:
             yield DigitalInput(self.name, inputType, bitID, boardID, 0, debounceTime)
+
+    def generateDigitalOutputs(self):
+        digitalOutputBitIDs = [
+            (self.boardIDs[0], 0, "SUJBrake"),
+        ]
+
+        for boardID, bitID, outputType in digitalOutputBitIDs:
+            yield DigitalOutput(self.name, outputType, bitID, boardID)
 
     def generateDallasChip(self):
         return None
@@ -589,6 +605,7 @@ class MTM(Robot):
         self.encoderCPT = lambda index: [4000, 4000, 4000, 4000, 64, 64, 64][index]
         self.gearRatio = lambda index: [63.41, 49.88, 59.73, 10.53, 33.16, 33.16, 16.58][index]
         self.pitch = lambda index: 1
+        self.velocitySource = lambda index: 'FIRMWARE'
         self.motorMaxCurrent = lambda index: [0.67, 0.67, 0.67, 0.67, 0.59, 0.59, 0.407][index]
         self.motorTorque = lambda index: [0.0438, 0.0438, 0.0438, 0.0438, 0.00495, 0.00495, 0.00339][index]
         self.actuatorType = lambda index: "Revolute"
@@ -623,6 +640,7 @@ class MTMGripper(Robot):
         self.encoderCPT = lambda index: 4000
         self.gearRatio = lambda index: 63.41
         self.pitch = lambda index: 1
+        self.velocitySource = lambda index: 'SOFTWARE'
         self.motorMaxCurrent = lambda index: 0.0
         self.motorTorque = lambda index: 0.0438
         self.actuatorType = lambda index: "Revolute"
@@ -757,14 +775,18 @@ class AnalogBrake(Serializable):
 
 class Encoder(Serializable):
     def __init__(
-        self, potentiometerUnits, direction, CPT, pitch, gearRatio
+            self, potentiometerUnits, direction, CPT, gearRatio, pitch, velocitySource
     ):
         encoderPos = direction * (360 / CPT) * (pitch / gearRatio)
         encoderPos = "{:10.15f}".format(encoderPos)
         self.bitsToPosSI = Conversion(encoderPos, None, potentiometerUnits)
+        self.velocitySource = velocitySource
 
     def toDict(self):
-        return {"BitsToPosSI": self.bitsToPosSI}
+        return {
+            "BitsToPosSI": self.bitsToPosSI,
+            "VelocitySource": self.velocitySource,
+        }
 
 
 # === AnalogIn =====
