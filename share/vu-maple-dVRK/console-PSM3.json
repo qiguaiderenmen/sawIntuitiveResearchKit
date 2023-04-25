@@ -9,8 +9,8 @@
     [
         {
             "name": "PSM3",
-            "type": "PSM",
-            "serial": "26611"
+            "type": "PSM_Si",
+            "serial": "697446"
         }
     ]
 }
