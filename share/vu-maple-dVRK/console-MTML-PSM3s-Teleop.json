@@ -1,0 +1,40 @@
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+    "io":
+    {
+        "footpedals": "io/sawRobotIO1394-PSM1-foot-pedals.xml",
+        // "port": "fw"
+        "firewire-protocol": "sequential-read-write"
+    }
+    ,
+    "arms":
+    [
+        {
+            "name": "PSM3",
+            "type": "PSM_Si",
+            "serial": "697446"
+        }
+        ,
+        {
+            "name": "MTML",
+            "type": "MTM",
+            "serial": "23060"
+        }
+    ]
+    ,
+    "psm-teleops":
+    [
+        {
+            "mtm": "MTML",
+            "psm": "PSM3",
+            "configure-parameter": {
+                "scale": 0.4  //,
+               /* // "jaw-rate": 6.3 // rad per second */
+                
+              /*"rotation" : [[-1.0000,  0.0000,  0.0000],
+                              [ 0.0000, -1.0000,  0.0000],
+                              [ 0.0000,  0.0000,  1.0000]]*/
+            }
+        }
+    ]
+}
