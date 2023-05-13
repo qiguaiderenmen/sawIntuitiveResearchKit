@@ -2,6 +2,7 @@
 {
     "kinematic": "kinematic/mtml.json",
     "gravity-compensation": "gc-MTML-23060.json",
-    "re-home": false
+    "re-home": false,
+    "generation":"Classic"
     // , "platform-gain": 1.0
 }
